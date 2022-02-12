@@ -3,6 +3,9 @@ import React, { useRef } from "react";
 const ImageUploader = () => {
   const inputRef = useRef(null);
   const onButtonClick = () => inputRef.current.click();
+  const onSaveImage = () => {
+    console.log("hore");
+  };
 
   return (
     <div className="container">
@@ -16,6 +19,7 @@ const ImageUploader = () => {
           type="file"
           className="input-control"
           accept="image/*"
+          onChange={onSaveImage}
         />
         <img src="/images/image.svg" alt="Icon" className="img-icon" />
         <span className="gray-4 text-poppins drag-text">
