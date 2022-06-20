@@ -4,6 +4,7 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const morgan = require("morgan");
+const mime = require("mime-types");
 const cloudinary = require("./services/cloudinary");
 const { upload } = require("./services/storage");
 const app = express();
@@ -18,6 +19,8 @@ app.get("/api/images/:publicId", (req, res) => {
 
   if (!fs.existsSync(image)) return res.status(404).end();
 
+  const mimetype = mime.lookup(image);
+  res.setHeader("Content-Type", mimetype);
   res.sendFile(image);
 });
 
