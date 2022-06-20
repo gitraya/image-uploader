@@ -27,6 +27,7 @@ code {
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: unset;
 }
 
 main {
