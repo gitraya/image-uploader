@@ -5,7 +5,7 @@ const Form = ({ onSubmit }) => {
   const onButtonClick = () => inputRef.current.click();
 
   return (
-    <form className="container">
+    <form className="container-uploader">
       <h1 className="title text-poppins">Upload your image</h1>
       <p className="description text-poppins">File should be Jpeg, Png,...</p>
       <div className="input-wrapper">
