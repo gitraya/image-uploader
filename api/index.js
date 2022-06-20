@@ -2,16 +2,43 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const multer = require("multer");
 const morgan = require("morgan");
 const cloudinary = require("./services/cloudinary");
-const upload = multer({ dest: "uploads/" });
+const { upload } = require("./services/storage");
 const app = express();
 
 app.use(morgan("dev"));
 app.use(cors({ origin: "http://localhost:3000" }));
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/api/images/:publicId", (req, res) =>
+  res.sendFile(`${__dirname}/uploads/${req.params.publicId}`)
+);
+
+app.post("/api/images", upload.single("image"), async (req, res) => {
+  try {
+    const image = req.file;
+    if (!image) {
+      return res
+        .status(400)
+        .json({ error: "Image is required", status: "FAILED" });
+    }
+
+    if (!image.mimetype.includes("image")) {
+      return res
+        .status(400)
+        .json({ error: "Image type is invalid", status: "FAILED" });
+    }
+
+    res
+      .status(201)
+      .json({ status: "SUCCESS", url: `/api/images/${image.filename}` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error", status: "FAILED" });
+  }
+});
 
 app.post("/api/images/cloud", upload.single("image"), async (req, res) => {
   try {
