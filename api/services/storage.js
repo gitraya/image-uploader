@@ -9,7 +9,9 @@ const storage = multer.diskStorage({
       null,
       slug(path.parse(file.originalname).name.normalize("NFKD"), {
         lower: true,
-      }) + Date.now()
+      }) +
+        "-" +
+        Date.now()
     ),
 });
 

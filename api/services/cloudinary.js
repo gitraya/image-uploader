@@ -8,16 +8,14 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-module.exports = {
-  uploadImage: async function (file, name) {
-    return await cloudinary.uploader.upload(file, {
-      public_id: slug(path.parse(name).name.normalize("NFKD")),
-      folder: `${process.env.CLOUDINARY_FOLDER}/`,
-      use_filename: Boolean(name),
-      unique_filename: true,
-      access_mode: "authenticated",
-      resource_type: "image",
-      type: "authenticated",
-    });
-  },
+module.exports.uploadImage = async function (file, name) {
+  return await cloudinary.uploader.upload(file, {
+    public_id: slug(path.parse(name).name.normalize("NFKD")),
+    folder: `${process.env.CLOUDINARY_FOLDER}/`,
+    use_filename: Boolean(name),
+    unique_filename: true,
+    access_mode: "authenticated",
+    resource_type: "image",
+    type: "authenticated",
+  });
 };
