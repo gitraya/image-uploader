@@ -3,7 +3,7 @@ const path = require("path");
 const slug = require("slug");
 
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: `${process.env.STORAGE_FOLDER}/`,
   filename: (req, file, callback) =>
     callback(
       null,
