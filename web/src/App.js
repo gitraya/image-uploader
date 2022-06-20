@@ -20,7 +20,7 @@ const App = () => {
       const body = new FormData();
       body.append("image", file);
 
-      const response = await axios.post("/api/images/cloud", body, {
+      const response = await axios.post("/api/images", body, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
