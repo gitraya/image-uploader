@@ -7,7 +7,10 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:ui": "rm -rf build && cd ../web && npm run build && cp -r build ../api",
+    "deploy": "cd ../ && git subtree push --prefix api heroku master",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "mail.raya15@gmail.com",
   "license": "ISC",
