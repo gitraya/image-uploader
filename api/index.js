@@ -17,6 +17,8 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, "build")));
+
 app.get("/api/images/:publicId", (req, res, next) => {
   const image = path.resolve(__dirname, `uploads/${req.params.publicId}`);
 
