@@ -57,7 +57,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/gitraya/image-uploader.git
 
-# You need to change your env variable in .env.template file to your own
+# You need to change your env variable in /api/.env.template file to your own
 
 # Go to api directory
 $ cd api
