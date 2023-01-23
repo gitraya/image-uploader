@@ -40,7 +40,10 @@ app.post("/api/images", upload.single("image"), (req, res, next) => {
 
   res
     .status(201)
-    .json({ status: "SUCCESS", url: `/api/images/${image.filename}` });
+    .json({
+      status: "SUCCESS",
+      url: `${process.env.BASE_URL}/api/images/${image.filename}`,
+    });
 });
 
 app.post(
