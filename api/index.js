@@ -20,7 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/api/images/:publicId", (req, res, next) => {
-  const image = path.resolve(__dirname, `uploads/${req.params.publicId}`);
+  const image = path.resolve(
+    __dirname,
+    `${process.env.STORAGE_FOLDER}/${req.params.publicId}`
+  );
 
   if (!fs.existsSync(image)) return next(new Error("NotFound"));
 
