@@ -6,7 +6,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://gitraya-image-uploader.herokuapp.com">
+    <a href="https://image-uploader-gitraya.onrender.com">
       Demo
     </a>
     <span> | </span>
